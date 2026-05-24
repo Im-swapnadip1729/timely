@@ -1,4 +1,5 @@
 # Timely
+ It is a stopwatch and timer app built with React and Vite. It allows users to start, stop, and reset a stopwatch, as well as set a timer for a specific duration.
 
 This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
 
