@@ -88,8 +88,7 @@ export default function Timer() {
       <div className="h-48 flex flex-col items-center justify-center w-full">
         {mode === "input" ? (
           <div className="flex flex-col items-center w-full mt-4">
-            {/* Input Fields */}
-            <div className="flex items-center gap-4 text-white w-full max-w-xs mx-auto mb-10">
+            <div className="flex items-center gap-4 text-zinc-900 dark:text-white w-full max-w-xs mx-auto mb-10 transition-colors duration-500">
               {[
                 { label: "h", placeholder: "00", value: inputTime.h },
                 { label: "m", placeholder: "00", value: inputTime.m },
@@ -102,7 +101,7 @@ export default function Timer() {
                       placeholder={unit.placeholder}
                       value={unit.value}
                       onChange={(e) => handleInputChange(e, unit.label)}
-                      className="w-full bg-transparent text-center text-5xl sm:text-6xl font-extralight text-white border-b border-zinc-700/50 focus:border-blue-500/50 hover:border-zinc-500 transition-colors focus:outline-none placeholder:text-zinc-800 pb-2 z-10"
+                      className="w-full bg-transparent text-center text-5xl sm:text-6xl font-extralight text-zinc-900 dark:text-white border-b border-zinc-300 dark:border-zinc-700/50 focus:border-blue-500/50 hover:border-zinc-400 dark:hover:border-zinc-500 transition-colors focus:outline-none placeholder:text-zinc-300 dark:placeholder:text-zinc-800 pb-2 z-10"
                     />
                     <span className="absolute -bottom-6 text-xs font-medium tracking-widest text-zinc-500 uppercase">
                       {unit.label}
@@ -110,7 +109,7 @@ export default function Timer() {
                     <div className="absolute inset-0 bg-blue-500/5 blur-xl rounded-full opacity-0 group-focus-within:opacity-100 transition-opacity pointer-events-none" />
                   </div>
                   {idx < 2 && (
-                    <span className="text-3xl font-extralight text-zinc-700 mb-6">
+                    <span className="text-3xl font-extralight text-zinc-300 dark:text-zinc-700 mb-6 transition-colors duration-500">
                       :
                     </span>
                   )}
@@ -118,13 +117,12 @@ export default function Timer() {
               ))}
             </div>
 
-            {/* Presets Row */}
             <div className="flex flex-wrap justify-center gap-2 sm:gap-3 w-full max-w-sm">
               {presets.map((preset) => (
                 <button
                   key={preset.label}
                   onClick={() => handlePresetClick(preset.values)}
-                  className="px-4 py-1.5 rounded-full border border-zinc-700/50 text-xs font-medium text-zinc-400 hover:text-white hover:border-zinc-500 hover:bg-white/5 transition-all duration-300 active:scale-95"
+                  className="px-4 py-1.5 rounded-full border border-zinc-300 dark:border-zinc-700/50 text-xs font-medium text-zinc-600 dark:text-zinc-400 hover:text-zinc-900 dark:hover:text-white hover:border-zinc-400 dark:hover:border-zinc-500 hover:bg-zinc-100 dark:hover:bg-white/5 transition-all duration-300 active:scale-95"
                 >
                   {preset.label}
                 </button>
@@ -133,7 +131,7 @@ export default function Timer() {
           </div>
         ) : (
           <div className="flex items-center justify-center h-full w-full">
-            <div className="text-7xl sm:text-8xl font-mono font-extralight tracking-tighter text-white tabular-nums drop-shadow-md select-none">
+            <div className="text-7xl sm:text-8xl font-mono font-extralight tracking-tighter text-zinc-900 dark:text-white tabular-nums drop-shadow-md select-none transition-colors duration-500">
               {formatTimeDisplay(timeRemaining)}
             </div>
           </div>
@@ -146,13 +144,13 @@ export default function Timer() {
           className={`group relative w-14 h-14 rounded-full flex items-center justify-center transition-all duration-300 ${
             mode === "input"
               ? "opacity-30 cursor-not-allowed"
-              : "hover:bg-white/5 active:scale-95"
+              : "hover:bg-zinc-200 dark:hover:bg-white/5 active:scale-95"
           }`}
           disabled={mode === "input"}
           title="Reset"
         >
-          <div className="absolute inset-0 rounded-full border border-zinc-700 group-hover:border-zinc-500 transition-colors" />
-          <span className="text-zinc-400 group-hover:text-zinc-200 transition-colors">
+          <div className="absolute inset-0 rounded-full border border-zinc-300 dark:border-zinc-700 group-hover:border-zinc-400 dark:group-hover:border-zinc-500 transition-colors" />
+          <span className="text-zinc-500 dark:text-zinc-400 group-hover:text-zinc-900 dark:group-hover:text-zinc-200 transition-colors">
             <ResetIcon />
           </span>
         </button>
@@ -160,18 +158,20 @@ export default function Timer() {
         <button
           onClick={mode === "running" ? pauseTimer : startTimer}
           className={`group relative w-24 h-24 rounded-full flex items-center justify-center transition-all duration-500 active:scale-95 ${
-            mode === "running" ? "text-amber-400" : "text-blue-400"
+            mode === "running"
+              ? "text-amber-500 dark:text-amber-400"
+              : "text-blue-500 dark:text-blue-400"
           }`}
         >
           <div
-            className={`absolute inset-0 rounded-full blur-xl opacity-40 transition-all duration-500 ${
+            className={`absolute inset-0 rounded-full blur-xl opacity-20 dark:opacity-40 transition-all duration-500 ${
               mode === "running"
-                ? "bg-amber-500 group-hover:opacity-60 group-hover:blur-2xl"
-                : "bg-blue-500 group-hover:opacity-60 group-hover:blur-2xl"
+                ? "bg-amber-500 group-hover:opacity-40 dark:group-hover:opacity-60 group-hover:blur-2xl"
+                : "bg-blue-500 group-hover:opacity-40 dark:group-hover:opacity-60 group-hover:blur-2xl"
             }`}
           />
           <div
-            className={`absolute inset-0 rounded-full bg-black/40 backdrop-blur-md border transition-colors duration-300 ${
+            className={`absolute inset-0 rounded-full bg-white/80 dark:bg-black/40 backdrop-blur-md border transition-colors duration-300 ${
               mode === "running"
                 ? "border-amber-500/30 group-hover:border-amber-400/50"
                 : "border-blue-500/30 group-hover:border-blue-400/50"

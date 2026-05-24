@@ -52,10 +52,10 @@ export default function Stopwatch() {
   return (
     <div className="flex flex-col items-center w-full animate-in fade-in zoom-in duration-500">
       <div className="flex items-baseline justify-center w-full my-16 font-mono tracking-tighter tabular-nums select-none">
-        <span className="text-7xl sm:text-8xl font-extralight text-white drop-shadow-md">
+        <span className="text-7xl sm:text-8xl font-extralight text-zinc-900 dark:text-white drop-shadow-md transition-colors duration-500">
           {minutes}:{seconds}
         </span>
-        <span className="text-4xl sm:text-5xl font-light text-zinc-500 ml-2">
+        <span className="text-4xl sm:text-5xl font-light text-zinc-400 dark:text-zinc-500 ml-2 transition-colors duration-500">
           .{centiseconds}
         </span>
       </div>
@@ -63,11 +63,11 @@ export default function Stopwatch() {
       <div className="flex items-center gap-8">
         <button
           onClick={resetStopwatch}
-          className="group relative w-14 h-14 rounded-full flex items-center justify-center transition-all duration-300 hover:bg-white/5 active:scale-95"
+          className="group relative w-14 h-14 rounded-full flex items-center justify-center transition-all duration-300 hover:bg-zinc-200 dark:hover:bg-white/5 active:scale-95"
           title="Reset"
         >
-          <div className="absolute inset-0 rounded-full border border-zinc-700 group-hover:border-zinc-500 transition-colors" />
-          <span className="text-zinc-400 group-hover:text-zinc-200 transition-colors">
+          <div className="absolute inset-0 rounded-full border border-zinc-300 dark:border-zinc-700 group-hover:border-zinc-400 dark:group-hover:border-zinc-500 transition-colors" />
+          <span className="text-zinc-500 dark:text-zinc-400 group-hover:text-zinc-900 dark:group-hover:text-zinc-200 transition-colors">
             <ResetIcon />
           </span>
         </button>
@@ -75,18 +75,20 @@ export default function Stopwatch() {
         <button
           onClick={toggleStopwatch}
           className={`group relative w-24 h-24 rounded-full flex items-center justify-center transition-all duration-500 active:scale-95 ${
-            isRunning ? "text-amber-400" : "text-emerald-400"
+            isRunning
+              ? "text-amber-500 dark:text-amber-400"
+              : "text-emerald-500 dark:text-emerald-400"
           }`}
         >
           <div
-            className={`absolute inset-0 rounded-full blur-xl opacity-40 transition-all duration-500 ${
+            className={`absolute inset-0 rounded-full blur-xl opacity-20 dark:opacity-40 transition-all duration-500 ${
               isRunning
-                ? "bg-amber-500 group-hover:opacity-60 group-hover:blur-2xl"
-                : "bg-emerald-500 group-hover:opacity-60 group-hover:blur-2xl"
+                ? "bg-amber-500 group-hover:opacity-40 dark:group-hover:opacity-60 group-hover:blur-2xl"
+                : "bg-emerald-500 group-hover:opacity-40 dark:group-hover:opacity-60 group-hover:blur-2xl"
             }`}
           />
           <div
-            className={`absolute inset-0 rounded-full bg-black/40 backdrop-blur-md border transition-colors duration-300 ${
+            className={`absolute inset-0 rounded-full bg-white/80 dark:bg-black/40 backdrop-blur-md border transition-colors duration-300 ${
               isRunning
                 ? "border-amber-500/30 group-hover:border-amber-400/50"
                 : "border-emerald-500/30 group-hover:border-emerald-400/50"
